@@ -1,0 +1,4 @@
+八阿哥
+1. len()从1开始，index从0开始。left. right = 0, len(s) - 1
+2. 空想一小时，不如演草纸一分钟
+3. 参考https://blog.csdn.net/v_july_v/article/details/7041827

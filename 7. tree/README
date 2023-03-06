@@ -1,0 +1,3 @@
+recursion https://blog.csdn.net/storyfull/article/details/102671946
+recursion都可以用stack解决；都是先解决后进入的问题
+切记：对tree用stack的时候，要先右后左，反着来

@@ -1,0 +1,23 @@
+1. 回溯本质上还是暴力搜索
+
+2. Sometimes, for loop is not workable, such as when there are too many loops or
+the number of loop itself is a variable (比如5 电话号问题)
+
+3. 技巧：回溯中必有一个for loop，这个for loop 与brute force的for loop 是一模一样的！！！
+for loop 上面放回溯的终止条件，来定义有几个for loop！！！
+
+4. 精髓是
+for i in 'abc':
+    for j in 'abc':
+        ...
+这是完全体，在这个的基础上进行剪枝操作，
+剪枝操作都发生在for循环内
+for之上的if只负责控制for循环层数，或者搜集结果
+比如需要组合就把第i层循环中i之前的元素剪掉，
+需要组合就把第i层循环中与上一层相同的元素剪掉（要用recorder），
+如果输入有重复元素但需要满足结果不重复，就把层向的重复元素剪掉（用recorder）
+
+
+
+
+

@@ -1,0 +1,2 @@
+1. python list如何存储：每个元素的指针被存在一个contiguous memory中，这段memory的头指针和列表长度就可以定位这个list的所有信息
+2. sliding window maximum 中唯一可以忽略的是当前window中比马上要进来的那个element小的那些elements
