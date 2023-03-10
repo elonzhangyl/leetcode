@@ -1,15 +1,18 @@
-def num_set():
-    set = [1, 5, 11, 5]
-    c = int(sum(set)/2)
+class Solution:
+    def knapsack(self, nums):
+        if sum(nums) % 2 != 0:
+            return -1
+        cap = sum(nums) // 2
+        dp = [0 for _ in range(cap + 1)]
+        for j in range(nums[0], cap + 1):
+            dp[j] = nums[0]
+        
+        for i in range(1, len(nums)):
+            for j in range(cap, nums[i] - 1, -1):
+                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i])
 
-    dp = [0]*(c+1)
-    for i in range(len(set)):
-        print(i)
-        for j in range(c, set[i] - 1, -1):
-                dp[j] = max(dp[j], dp[j - set[i]] + set[i])
-        print(dp)
-    
-    return dp
+        return dp[-1] == cap
 
-dp = num_set()
-print(dp)
+print(Solution().knapsack([1,5,11,5]))
+
+        
