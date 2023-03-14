@@ -5,23 +5,20 @@ class Solution:
         self.path = []
 
     def subset(self, nums):
-        self.record = [False] * len(nums)
-        self.backtracking(0, nums)
+        nums.sort()
+        self.backtracking(nums)
         return self.res
 
-    def backtracking(self, start, nums):
-        if len(self.path) >= 2:
-            self.res.append(self.path[:])
+    def backtracking(self, nums):
+        self.res.append(self.path[:])
+        if len(nums) == 0:
+            return
 
-        record = set()
-        for i in range(start, len(nums)):
-            if self.path and nums[i] < self.path[-1]:
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
-            if nums[i] in record:
-                continue
-            record.add(nums[i])
             self.path.append(nums[i])
-            self.backtracking(i+1, nums)
+            self.backtracking(nums[i+1:])
             self.path.pop()
 
-print(Solution().subset([4,7,6,7]))
+print(Solution().subset([1,2,2]))

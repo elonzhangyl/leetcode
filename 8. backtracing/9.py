@@ -5,18 +5,18 @@ class Solution:
         self.path = []
 
     def slice_palindrome(self, s):
-        self.backtracking(s, 0)
+        self.backtracking(s)
         return self.res
 
-    def backtracking(self, s, start):
-        if start >= len(s):
+    def backtracking(self, s):
+        if len(s) == 0:
             self.res.append(self.path[:])
             return
 
-        for i in range(start, len(s)):
-            if self.is_palindrome(s[start:i+1]):
-                self.path.append(s[start:i+1])
-                self.backtracking(s, i+1)
+        for i in range(len(s)):
+            if self.is_palindrome(s[:i+1]):
+                self.path.append(s[:i+1])
+                self.backtracking(s[i+1:])
                 self.path.pop()
     
     def is_palindrome(self, s):

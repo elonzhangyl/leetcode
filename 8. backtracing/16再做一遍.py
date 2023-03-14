@@ -3,28 +3,26 @@ class Solution():
     def __init__(self):
         self.path = []
         self.res = []
-        self.record = []
+        self.len = 0
 
     def permutation(self, nums):
         nums.sort()
         self.record = [0] * len(nums)
-        self.backtracking(nums)
+        self.backtracking(nums, len(nums))
         return self.res
 
-    def backtracking(self, nums):
-        if len(self.path) == len(nums):
+    def backtracking(self, nums, k):
+        if self.len == k:
             self.res.append(self.path[:])
             return
 
         for i in range(len(nums)):
-            if self.record[i] == 1:
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
-            if i > 0 and self.record[i-1] == 1 and nums[i-1] == nums[i]:
-                continue
-            self.record[i] = 1
+            self.len += 1
             self.path.append(nums[i])
-            self.backtracking(nums)
+            self.backtracking(nums[0:i]+nums[i+1:], k)
             self.path.pop()
-            self.record[i] = 0
+            self.len -= 1
 
 print(Solution().permutation([1,1,2]))

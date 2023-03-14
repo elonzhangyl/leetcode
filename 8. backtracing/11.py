@@ -5,17 +5,17 @@ class Solution:
         self.path = []
 
     def subset(self, nums):
-        self.backtracking(0, nums)
+        self.backtracking(nums)
         return self.res
 
-    def backtracking(self, start, nums):
-        self.res.append(self.path[:])
-        if start >= len(nums):
+    def backtracking(self, nums):
+        if len(nums) == 0:
             return
 
-        for i in range(start, len(nums)):
+        for i in range(len(nums)):
             self.path.append(nums[i])
-            self.backtracking(i+1, nums)
+            self.res.append(self.path[:])
+            self.backtracking(nums[i+1:])
             self.path.pop()
 
 print(Solution().subset([1,2,3]))

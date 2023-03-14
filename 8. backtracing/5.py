@@ -1,8 +1,11 @@
 class Solution:
     def __init__(self):
+        self.i = -1
+        self.path = []
         self.res = []
-        self.path = ''
-        self.letter_map = {
+
+    def dial(self, nums):
+        dia = {
             '2': 'abc',
             '3': 'def',
             '4': 'ghi',
@@ -12,18 +15,24 @@ class Solution:
             '8': 'tuv',
             '9': 'wxyz'
         }
-    def dia(self, digits):
-        self.backtracking(digits, 0)
+        letters_list = []
+        for num in nums:
+            letters_list.append(dia[num])
+        self.backtracking(letters_list)
+
         return self.res
 
-    def backtracking(self, digits, idx):
-        if idx >= len(digits):
-            self.res.append(self.path[:])
+    def backtracking(self, letters_list):
+        if self.i == len(letters_list) - 1:
+            self.res.append(''.join(self.path[:]))
             return
 
-        for letter in self.letter_map[digits[idx]]: # 相当于两层for循环对应不同的nums，以前是相同的
-            self.path += letter
-            self.backtracking(digits, idx+1)
-            self.path = self.path[:-1]
+        for letter in letters_list[self.i]:
+            self.path.append(letter)
+            self.i += 1
+            self.backtracking(letters_list)
+            self.i -= 1
+            self.path.pop()
 
-print(Solution().dia('23'))
+
+print(Solution().dial('23'))
