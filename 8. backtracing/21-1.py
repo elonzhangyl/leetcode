@@ -25,13 +25,11 @@ class Solution:
         return True
 
     def backtracking(self, idx, len_blank):
-        print(f'idx={idx}, len_blank={len_blank}')
         if idx == len_blank:
             # self.board = deepcopy(self.board)
             return True
         
         for m in range(1, 10):
-            print(f'm={m}')
             if not self.is_valid(self.blanks[idx][0], self.blanks[idx][1], str(m)):
                 continue
             self.board[self.blanks[idx][0]][self.blanks[idx][1]] = str(m)
