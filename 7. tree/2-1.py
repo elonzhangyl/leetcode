@@ -13,9 +13,9 @@ class Solution:
             return
         self.res.append(mid.value)
         if mid.left:
-            self.obtain(mid.left.value)
+            self.obtain(mid.left)
         if mid.right:
-            self.obtain(mid.right.value)
+            self.obtain(mid.right)
 
 
 
