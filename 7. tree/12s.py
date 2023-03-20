@@ -12,18 +12,31 @@ class Solution:
         else:
             return False
     
-    def get_height(self, root: TreeNode) -> int:
-        # Base Case
-        if not root:
+    def get_height(self, node: TreeNode) -> int:
+        if not node:
             return 0
-        # 左
-        if (left_height := self.get_height(root.left)) == -1:
+        h_left = self.backtrack(node.left)
+        h_right = self.backtrack(node.right)
+        if abs(h_left - h_right) > 1:
             return -1
-        # 右
-        if (right_height := self.get_height(root.right)) == -1:
+        if h_left == -1:
             return -1
-        # 中
-        if abs(left_height - right_height) > 1:
+        if h_right == -1:
             return -1
-        else:
-            return 1 + max(left_height, right_height)
+        return max(h_left, h_right) + 1
+        
+
+n1 = TreeNode(1)
+n2 = TreeNode(2)
+n3 = TreeNode(3)
+n4 = TreeNode(4)
+n5 = TreeNode(5)
+n6 = TreeNode(6)
+n7 = TreeNode(7)
+n1.left = n2
+n1.right = n3
+# n2.left = n5
+# n2.right = n4
+# n3.left = n7
+# n3.right = n6
+print(Solution().isBalanced(n1))
