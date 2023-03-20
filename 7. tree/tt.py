@@ -1,39 +1,50 @@
 class TreeNode: 
     def __init__(self, value=0):
-        self.value = value
+        self.val = value
         self.left = None
         self.right = None
 
 class Solution:
-    def levelOrderTraversal(self, root):
+    def __init__(self):
+        self.res_l = []
+        self.res_r = []
+
+    def isSymmetric(self, root):
         if not root:
             return
-        que = [root]
-        while que:
-            size_ = len(que)
-            for _ in range(size_):
-                node = que.pop(0)
-                if node.left:
-                    que.append(node.left)
-                if node.right:
-                    que.append(node.right)
-                if que:
-                    node.next = que[0]
-                else:
-                    node.next = None
-        return root
+        self.traversal_l(root.left)
+        self.traversal_r(root.right)
+        if self.res_l == self.res_r:
+            return True
+        return False
+    
+    def traversal_l(self, node):
+        if node:
+            self.res_l.append(node.val)
+            self.traversal_l(node.left)
+            self.traversal_l(node.right)
+        else:
+            self.res_l.append(None)
+    
+    def traversal_r(self, node):
+        if node:
+            self.res_r.append(node.val)
+            self.traversal_r(node.right)
+            self.traversal_r(node.left)
+        else:
+            self.res_r.append(None)
 
 n1 = TreeNode(1)
 n2 = TreeNode(2)
-n3 = TreeNode(3)
-n4 = TreeNode(4)
-n5 = TreeNode(5)
+n3 = TreeNode(2)
+n4 = TreeNode(3)
+n5 = TreeNode(3)
 n6 = TreeNode(6)
 n7 = TreeNode(7)
 n1.left = n2
 n1.right = n3
-n3.left = n6
-n3.right = n7
+n2.right = n4
+n3.right = n5
 
 
-print(Solution().levelOrderTraversal(n1))
+print(Solution().isSymmetric(n1))
