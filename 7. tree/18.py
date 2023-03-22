@@ -5,26 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def hasPathSum(self, root, targetsum: int) -> bool:
-        def isornot(root, targetsum) -> bool:
-            if (not root.left) and (not root.right) and targetsum == 0:
-                return True  # 遇到叶子节点，并且计数为0
-            if (not root.left) and (not root.right):
-                return False  # 遇到叶子节点，计数不为0
-            if root.left:
-                targetsum -= root.left.val  # 左节点
-                if isornot(root.left, targetsum): 
-                    return True  # 递归，处理左节点
-                targetsum += root.left.val  # 回溯
-            if root.right:
-                targetsum -= root.right.val  # 右节点
-                if isornot(root.right, targetsum): 
-                    return True  # 递归，处理右节点
-                targetsum += root.right.val  # 回溯
-            return False
+    def __init__(self):
+        self.path = []       
+        self.res = []
 
-        if root == None:
-            return False  # 别忘记处理空treenode
-        else:
-            return isornot(root, targetsum - root.val)
+    def hasPathSum(self, root, targetsum: int) -> bool:
+        if self.backtrack([root]):
+            return True
+    
+    def backtrack(self, children, target):
+        if not children[0] and not children[-1]:
+            if self.res == target:
+                return True
+            return
         
+        for child in children:
+            if child:
+                self.res += child.val
+                if self.backtrack([child.left, child.right], target):
+                    return True
+                self.res -= child.val
