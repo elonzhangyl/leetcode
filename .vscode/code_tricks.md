@@ -10,3 +10,8 @@ for i in range(len(res)-1):
 ones = strs[k].count('1')
 zeros = strs[k].count('0')
 ```
+
++ 计算sum，不要用sum()
+```python
+sub_nums -= nums[left]
+```
