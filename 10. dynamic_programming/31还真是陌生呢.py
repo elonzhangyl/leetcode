@@ -4,7 +4,7 @@ class Solution:
         return
     def traverse(self, node):
         if not node:
-            return 0
+            return [0 , 0]
         dp_left = self.traverse(node.left)
         dp_right = self.traverse(node.right)
         dp = [0, 0]
